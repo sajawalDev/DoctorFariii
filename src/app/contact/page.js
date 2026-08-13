@@ -4,15 +4,15 @@ import ClinicHours from "@/components/ClinicHours";
 import { clinic } from "@/lib/site";
 
 export const metadata = {
-  title: "Contact the Clinic",
+  title: "Contact",
   description:
-    "Contact Dr. Fariha Ashraf's homeopathic clinic in Shalimar Town, Lahore — phone, WhatsApp and email for questions about remedies, courier tracking or whether homeopathy suits your case.",
+    "Contact Dr. Fariha Ashraf — phone, WhatsApp and email for questions about remedies, courier tracking or whether homeopathy suits your case. Online consultations across Pakistan.",
   alternates: { canonical: "/contact" },
   openGraph: {
     url: "/contact",
-    title: "Contact Dr. Fariha Ashraf's Clinic — Lahore",
+    title: "Contact Dr. Fariha Ashraf — Online Homeopathy",
     description:
-      "Phone, WhatsApp and email for the clinic, plus consultation hours. In-person visits by appointment in Shalimar Town, Lahore.",
+      "Phone, WhatsApp and email, plus consultation hours. Online consultations across Pakistan — no physical clinic.",
   },
 };
 
@@ -71,12 +71,12 @@ export default function ContactPage() {
               </a>
               <div className="citem">
                 <div className="ic">
-                  <Icon name="pin" size={19} strokeWidth={1.8} />
+                  <Icon name="video" size={19} strokeWidth={1.8} />
                 </div>
                 <div>
-                  <b>Clinic</b>
-                  <span>{clinic.area}</span>
-                  <em>In-person visits by appointment only</em>
+                  <b>Online consultations</b>
+                  <span>Pakistan-wide, from anywhere</span>
+                  <em>No physical clinic — remedies couriered to you</em>
                 </div>
               </div>
             </div>
@@ -89,50 +89,6 @@ export default function ContactPage() {
 
           <div className="rv-r">
             <ContactForm />
-          </div>
-        </div>
-      </section>
-
-      {/* map placeholder */}
-      <section className="sec-tight">
-        <div className="wrap">
-          <div
-            className="rv-s"
-            style={{
-              border: "1px solid var(--line)",
-              borderRadius: "24px",
-              overflow: "hidden",
-              background: "var(--porcelain)",
-              height: "340px",
-              display: "grid",
-              placeItems: "center",
-              position: "relative",
-            }}
-          >
-            <div style={{ textAlign: "center" }}>
-              <div
-                className="ic"
-                style={{
-                  width: "54px",
-                  height: "54px",
-                  borderRadius: "15px",
-                  background: "#fff",
-                  display: "grid",
-                  placeItems: "center",
-                  margin: "0 auto 16px",
-                  boxShadow: "var(--shadow-s)",
-                  color: "var(--lapis)",
-                }}
-              >
-                <Icon name="pin" size={22} strokeWidth={1.8} />
-              </div>
-              <b style={{ fontFamily: "var(--serif)", fontSize: "1.16rem", display: "block" }}>
-                {clinic.area}
-              </b>
-              <span className="muted" style={{ fontSize: ".86rem" }}>
-                Google Maps embed goes here
-              </span>
-            </div>
           </div>
         </div>
       </section>

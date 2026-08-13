@@ -3,6 +3,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import HashScroll from "@/components/HashScroll";
 import { SITE_URL, clinic, hours } from "@/lib/site";
 
 const fraunces = Fraunces({
@@ -86,7 +87,6 @@ function jsonLd() {
       addressLocality: "Lahore",
       addressRegion: "Punjab",
       addressCountry: "PK",
-      streetAddress: "Shalimar Town",
     },
     founder: {
       "@type": "Person",
@@ -116,6 +116,7 @@ export default function RootLayout({ children }) {
         <main>{children}</main>
         <Footer />
         <ScrollReveal />
+        <HashScroll />
       </body>
     </html>
   );

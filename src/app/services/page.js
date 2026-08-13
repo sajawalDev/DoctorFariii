@@ -5,7 +5,7 @@ import Faq from "@/components/Faq";
 export const metadata = {
   title: "Services & Fees",
   description:
-    "Online homeopathic consultation, dermatology, diet & nutrition planning, chronic case management and women's & children's health — with remedies couriered across Pakistan.",
+    "Online homeopathic consultation, skin & hair care, obesity control with diet management, beauty care, chronic case management and women's & children's health — with remedies couriered across Pakistan.",
   alternates: { canonical: "/services" },
   openGraph: {
     url: "/services",
@@ -17,31 +17,43 @@ export const metadata = {
 
 const services = [
   {
+    slug: "online-consultation",
     icon: "video",
     title: "Online homeopathic consultation",
     body: "A 40-minute video or audio consultation covering your complaint, medical history, sleep, appetite, temperament and family history. You leave with a written plan; the remedy is dispatched to your address.",
   },
   {
+    slug: "skin-hair",
     icon: "face",
-    title: "Homeopathic dermatology",
-    body: "Her named specialty. Acne, eczema, pigmentation, chronic itching, hair fall and scalp complaints — approached constitutionally rather than as a surface problem to be suppressed.",
+    title: "Skin & Hair specialist",
+    body: "Her named specialty. Acne, eczema, pigmentation, chronic itching, hair fall and scalp complaints — approached constitutionally, treated from the inside out rather than suppressed at the surface.",
   },
   {
+    slug: "obesity",
     icon: "cutlery",
-    title: "Diet & nutrition planning",
-    body: "A written eating plan built around desi household cooking, your budget and your routine — used alongside a remedy, or on its own for weight, energy and digestion goals.",
+    title: "Obesity control — homeopathy & diet management",
+    body: "Control your obesity with homoeopathy and a written diet-management plan built around desi household cooking, your budget and your routine — for lasting changes in weight, energy and digestion.",
   },
   {
+    slug: "beauty",
+    icon: "heart",
+    title: "Beauty care & beauty products",
+    body: "Homoeopathic beauty care for skin and hair, with guidance on gentle, remedy-based beauty products chosen to suit your skin type — supporting the treatment rather than masking the complaint.",
+  },
+  {
+    slug: "chronic",
     icon: "pulse",
     title: "Chronic case management",
     body: "For complaints measured in years, not days. Structured review appointments, maintained case notes, and remedy adjustments based on how you actually respond over months.",
   },
   {
+    slug: "women-children",
     icon: "female",
     title: "Women's & children's health",
     body: "Cycle irregularity, cycle-linked pain and mood, and gentle paediatric dosing for colic, teething, appetite and repeated infections. Consultations available in Urdu or Punjabi.",
   },
   {
+    slug: "remedies",
     icon: "flask",
     title: "In-house prepared remedies",
     body: "Remedies are prepared and potentised in her own dispensary rather than ordered in, then couriered anywhere in Pakistan with dosage written on the label in Urdu and English.",
@@ -149,11 +161,15 @@ export default function ServicesPage() {
         <div className="wrap">
           <div className="shead rv">
             <div className="eyebrow">What she offers</div>
-            <h2 className="d2">Six ways to work together.</h2>
+            <h2 className="d2">Ways to work together.</h2>
+            <p className="lede" style={{ marginTop: "18px" }}>
+              <em className="hl">Healing begins here</em> — from skin and hair to weight, beauty care
+              and everyday complaints, every service starts with a full case history.
+            </p>
           </div>
           <div>
             {services.map((s, i) => (
-              <div className="srow rv" style={{ "--dl": `${i * 0.08}s` }} key={s.title}>
+              <div className="srow rv" id={s.slug} style={{ "--dl": `${i * 0.08}s` }} key={s.title}>
                 <div className="sr-ic">
                   <Icon name={s.icon} size={26} strokeWidth={1.7} />
                 </div>
@@ -176,7 +192,7 @@ export default function ServicesPage() {
           <div className="sp-media rv-r">
             <div
               className="mframe"
-              style={{ background: "linear-gradient(160deg,#12314F,#0B1F35)", borderColor: "rgba(255,255,255,.12)" }}
+              style={{ background: "linear-gradient(160deg,#0A5158,#063B41)", borderColor: "rgba(255,255,255,.12)" }}
             >
               <div className="ph">
                 <b style={{ color: "rgba(255,255,255,.75)" }}>Consultation in progress</b>

@@ -16,7 +16,7 @@ export const clinic = {
   country: "Pakistan",
   phoneDisplay: "(+92) 314 4270788",
   phoneHref: "+923144270788",
-  email: "learningpoint836@gmail.com",
+  email: "doctorfarihallc@gmail.com",
   languages: ["Urdu", "Punjabi", "English"],
   builtBy: "BOSS Digital Solutions",
 };

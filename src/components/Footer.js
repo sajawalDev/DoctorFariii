@@ -40,11 +40,11 @@ export default function Footer() {
           <div>
             <h5>Care</h5>
             <div className="fnav">
-              <Link href="/services">Homeopathic dermatology</Link>
-              <Link href="/services">Diet &amp; nutrition</Link>
-              <Link href="/services">Women&rsquo;s health</Link>
-              <Link href="/services">Children&rsquo;s health</Link>
-              <Link href="/services">Chronic cases</Link>
+              <Link href="/services#skin-hair">Skin &amp; Hair specialist</Link>
+              <Link href="/services#obesity">Obesity control &amp; diet</Link>
+              <Link href="/services#beauty">Beauty care &amp; products</Link>
+              <Link href="/services#women-children">Women&rsquo;s &amp; children&rsquo;s health</Link>
+              <Link href="/services#chronic">Chronic case management</Link>
             </div>
           </div>
 
@@ -53,7 +53,7 @@ export default function Footer() {
             <div className="fnav">
               <a href={`tel:${clinic.phoneHref}`}>{clinic.phoneDisplay}</a>
               <a href={`mailto:${clinic.email}`}>{clinic.email}</a>
-              <Link href="/contact">{clinic.area}</Link>
+              <Link href="/contact">Online &middot; Pakistan-wide</Link>
               <Link href="/contact">{weekdayHours}</Link>
             </div>
           </div>
