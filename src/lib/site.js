@@ -3,7 +3,7 @@
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://drfarihaashraf.com";
+  "https://doctor-fariii.vercel.app";
 
 export const clinic = {
   name: "Dr. Fariha Ashraf",
