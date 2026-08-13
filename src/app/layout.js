@@ -1,4 +1,4 @@
-import { Fraunces, Plus_Jakarta_Sans, Noto_Nastaliq_Urdu } from "next/font/google";
+import { Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -14,12 +14,6 @@ const fraunces = Fraunces({
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-jakarta",
-  display: "swap",
-});
-const urdu = Noto_Nastaliq_Urdu({
-  subsets: ["arabic"],
-  weight: ["400", "600"],
-  variable: "--font-urdu",
   display: "swap",
 });
 
@@ -45,7 +39,6 @@ export const metadata = {
     "diet and nutrition Lahore",
   ],
   alternates: { canonical: "/" },
-  icons: { icon: "/icon.svg", apple: "/icon.svg" },
   openGraph: {
     type: "website",
     siteName: clinic.name,
@@ -70,7 +63,7 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#0B1F35",
+  themeColor: "#07828C",
   colorScheme: "light",
 };
 
@@ -114,7 +107,7 @@ function jsonLd() {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${fraunces.variable} ${jakarta.variable} ${urdu.variable}`}>
+      <body className={`${fraunces.variable} ${jakarta.variable}`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }}

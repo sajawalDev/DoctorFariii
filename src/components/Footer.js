@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { clinic, hours } from "@/lib/site";
 
 export default function Footer() {
@@ -11,7 +12,9 @@ export default function Footer() {
         <div className="fgrid">
           <div className="fbrand">
             <div className="brand">
-              <div className="mono">{clinic.monogram}</div>
+              <span className="leaf-chip">
+                <Image src="/leaf.png" alt="" width={30} height={30} />
+              </span>
               <div className="brand-t">
                 <div className="brand-n">{clinic.name}</div>
                 <div className="brand-s">{clinic.role}</div>

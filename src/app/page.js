@@ -95,18 +95,23 @@ export default function HomePage() {
               <i>&#10003;</i> Now accepting online patients
             </div>
             <h1 className="d1">
-              <span className="wline">
-                <span>Healing that begins</span>
-              </span>
-              <span className="wline">
+              <span className="wline" style={{ "--dl": ".12s" }}>
                 <span>
-                  with <em className="ital">listening.</em>
+                  <em className="hl">True Healing</em> begins
                 </span>
               </span>
+              <span className="wline" style={{ "--dl": ".2s" }}>
+                <span>when we treat the patient</span>
+              </span>
+              <span className="wline" style={{ "--dl": ".28s" }}>
+                <span>
+                  as a <em className="ital">whole</em> &mdash; not just
+                </span>
+              </span>
+              <span className="wline" style={{ "--dl": ".36s" }}>
+                <span>the disease.</span>
+              </span>
             </h1>
-            <p className="urdu rv" style={{ "--dl": ".55s" }}>
-              {clinic.taglineUrdu}
-            </p>
             <p className="lede hero-lede rv" style={{ "--dl": ".65s" }}>
               Dr. Fariha Ashraf, DHMS — a homeopathic physician in Lahore treating skin, digestion,
               hormonal and long-standing complaints. Consult from anywhere in Pakistan; remedies

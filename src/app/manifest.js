@@ -9,7 +9,9 @@ export default function manifest() {
     start_url: "/",
     display: "standalone",
     background_color: "#FFFFFF",
-    theme_color: "#0B1F35",
-    icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml" }],
+    theme_color: "#07828C",
+    icons: [
+      { src: "/leaf.png", sizes: "192x192", type: "image/png", purpose: "any" },
+    ],
   };
 }
