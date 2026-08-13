@@ -4,7 +4,7 @@ import { clinic, hours } from "@/lib/site";
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const weekdayHours = `${hours[0].day.slice(0, 3)}–${hours[5].day.slice(0, 3)}, 11:00 am – 8:00 pm`;
+  const weekdayHours = `${hours[0].day.slice(0, 3)}–${hours[5].day.slice(0, 3)}, 11:00 am – 6:00 pm`;
 
   return (
     <footer>

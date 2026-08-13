@@ -26,17 +26,18 @@ export default function ContactPage() {
           </div>
           <h1 className="d1">
             <span className="wline">
-              <span>Get in touch</span>
+              <span>Get in touch,</span>
             </span>
             <span className="wline">
               <span>
-                with the <em className="ital">clinic.</em>
+                from <em className="ital">anywhere.</em>
               </span>
             </span>
           </h1>
           <p className="lede rv" style={{ "--dl": ".5s", marginTop: "24px", maxWidth: "600px" }}>
-            For anything that isn&rsquo;t an appointment — questions about a remedy, courier
-            tracking, or whether homeopathy suits your case.
+            The practice is fully online — there&rsquo;s no physical clinic to visit. Reach out for
+            anything that isn&rsquo;t an appointment: questions about a remedy, courier tracking, or
+            whether homeopathy suits your case.
           </p>
         </div>
       </section>

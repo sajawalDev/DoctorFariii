@@ -22,12 +22,12 @@ export const clinic = {
 };
 
 export const hours = [
-  { day: "Monday", dow: 1, time: "11:00 am – 8:00 pm" },
-  { day: "Tuesday", dow: 2, time: "11:00 am – 8:00 pm" },
-  { day: "Wednesday", dow: 3, time: "11:00 am – 8:00 pm" },
-  { day: "Thursday", dow: 4, time: "11:00 am – 8:00 pm" },
-  { day: "Friday", dow: 5, time: "11:00 am – 1:00 pm, 3:00 – 8:00 pm" },
-  { day: "Saturday", dow: 6, time: "11:00 am – 5:00 pm" },
+  { day: "Monday", dow: 1, time: "11:00 am – 6:00 pm" },
+  { day: "Tuesday", dow: 2, time: "11:00 am – 6:00 pm" },
+  { day: "Wednesday", dow: 3, time: "11:00 am – 6:00 pm" },
+  { day: "Thursday", dow: 4, time: "11:00 am – 6:00 pm" },
+  { day: "Friday", dow: 5, time: "11:00 am – 6:00 pm" },
+  { day: "Saturday", dow: 6, time: "11:00 am – 6:00 pm" },
   { day: "Sunday", dow: 0, time: "Closed", closed: true },
 ];
 

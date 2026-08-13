@@ -4,10 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 import Icon from "./Icon";
 
+// Client-side validators mirror the server rules in /api/contact.
+// The server re-validates everything — this is only for fast feedback.
 const validators = {
   name: (v) => v.trim().length > 1,
   phone: (v) => v.replace(/\D/g, "").length >= 10,
   email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+  topic: (v) => v.trim().length > 0,
   message: (v) => v.trim().length > 4,
 };
 
@@ -22,25 +25,57 @@ const topics = [
 export default function ContactForm() {
   const [values, setValues] = useState({ name: "", phone: "", email: "", topic: topics[0], message: "" });
   const [errors, setErrors] = useState({});
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [formError, setFormError] = useState("");
 
   const update = (name) => (e) => {
     setValues((v) => ({ ...v, [name]: e.target.value }));
     setErrors((er) => ({ ...er, [name]: false }));
+    if (formError) setFormError("");
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    if (status === "sending") return;
+
     const next = {};
     Object.keys(validators).forEach((k) => {
       if (!validators[k](values[k])) next[k] = true;
     });
     setErrors(next);
-    // No backend in this build — a validated submit shows the confirmation state.
-    if (Object.keys(next).length === 0) setSent(true);
+    if (Object.keys(next).length > 0) return;
+
+    setStatus("sending");
+    setFormError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+
+      if (res.ok) {
+        setStatus("sent");
+        return;
+      }
+
+      // Surface field errors the server flagged, if any.
+      const data = await res.json().catch(() => ({}));
+      if (data?.errors && typeof data.errors === "object") {
+        const serverErrors = {};
+        Object.keys(data.errors).forEach((k) => (serverErrors[k] = true));
+        setErrors(serverErrors);
+      }
+      setFormError(data?.error || "Something went wrong. Please try again.");
+      setStatus("error");
+    } catch {
+      setFormError("Couldn't reach the server. Please check your connection and try again.");
+      setStatus("error");
+    }
   };
 
-  if (sent) {
+  if (status === "sent") {
     return (
       <div className="formcard">
         <div style={{ textAlign: "center", padding: "26px 0" }}>
@@ -51,7 +86,8 @@ export default function ContactForm() {
             Message sent
           </h3>
           <p className="muted" style={{ margin: 0 }}>
-            The clinic replies within one working day. For anything urgent, call or WhatsApp instead.
+            Thanks for reaching out — a confirmation is on its way to your inbox and the clinic
+            replies within one working day. For anything urgent, call or WhatsApp instead.
           </p>
         </div>
       </div>
@@ -59,6 +95,7 @@ export default function ContactForm() {
   }
 
   const field = (name) => `fld${errors[name] ? " err" : ""}`;
+  const sending = status === "sending";
 
   return (
     <div className="formcard">
@@ -77,14 +114,14 @@ export default function ContactForm() {
             <label>
               Full name <i>*</i>
             </label>
-            <input type="text" value={values.name} onChange={update("name")} placeholder="Your name" />
+            <input type="text" value={values.name} onChange={update("name")} placeholder="Your name" required />
             <div className="emsg">Please enter your name</div>
           </div>
           <div className={field("phone")}>
             <label>
               Phone <i>*</i>
             </label>
-            <input type="tel" value={values.phone} onChange={update("phone")} placeholder="03XX XXXXXXX" />
+            <input type="tel" value={values.phone} onChange={update("phone")} placeholder="03XX XXXXXXX" required />
             <div className="emsg">Please enter a phone number</div>
           </div>
         </div>
@@ -92,27 +129,40 @@ export default function ContactForm() {
           <label>
             Email <i>*</i>
           </label>
-          <input type="email" value={values.email} onChange={update("email")} placeholder="you@example.com" />
+          <input type="email" value={values.email} onChange={update("email")} placeholder="you@example.com" required />
           <div className="emsg">Please enter a valid email address</div>
         </div>
-        <div className="fld">
-          <label>What is this about?</label>
-          <select value={values.topic} onChange={update("topic")}>
+        <div className={field("topic")}>
+          <label>
+            What is this about? <i>*</i>
+          </label>
+          <select value={values.topic} onChange={update("topic")} required>
             {topics.map((t) => (
               <option key={t}>{t}</option>
             ))}
           </select>
+          <div className="emsg">Please choose a topic</div>
         </div>
         <div className={field("message")}>
           <label>
             Message <i>*</i>
           </label>
-          <textarea value={values.message} onChange={update("message")} placeholder="How can the clinic help?" />
+          <textarea value={values.message} onChange={update("message")} placeholder="How can the clinic help?" required />
           <div className="emsg">Please write a short message</div>
         </div>
-        <button type="submit" className="btn btn-p" style={{ width: "100%" }}>
-          Send message
-          <Icon name="arrow" size={15} className="ar" />
+
+        {formError ? (
+          <p
+            role="alert"
+            style={{ color: "#c2503f", fontSize: ".88rem", fontWeight: 500, margin: "0 0 16px" }}
+          >
+            {formError}
+          </p>
+        ) : null}
+
+        <button type="submit" className="btn btn-p" style={{ width: "100%" }} disabled={sending} aria-busy={sending}>
+          {sending ? "Sending…" : "Send message"}
+          {!sending && <Icon name="arrow" size={15} className="ar" />}
         </button>
         <p className="muted" style={{ fontSize: ".82rem", textAlign: "center", margin: "18px 0 0" }}>
           Prefer to book straight away?{" "}
