@@ -3,7 +3,7 @@
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-  "https://doctor-fariii.vercel.app";
+  "https://doctorfariha.online";
 
 export const clinic = {
   name: "Dr. Fariha Ashraf",
@@ -12,7 +12,6 @@ export const clinic = {
   monogram: "FA",
   tagline: "True healing begins when we treat the patient as a whole, not just the disease.",
   city: "Lahore",
-  area: "Shalimar Town, Lahore",
   country: "Pakistan",
   phoneDisplay: "(+92) 314 4270788",
   phoneHref: "+923144270788",

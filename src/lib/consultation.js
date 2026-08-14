@@ -32,7 +32,6 @@ export const SERVICES = [
 export const MODES = [
   { mode: "Video call", icon: "video", desc: "WhatsApp, Zoom or Google Meet — your choice.", online: true },
   { mode: "Audio call", icon: "phone", desc: "Voice only, if your connection is slow.", online: true },
-  { mode: "In-clinic visit", icon: "pin", desc: "Shalimar Town, Lahore — by appointment.", online: false },
 ];
 
 export const findService = (name) => SERVICES.find((s) => s.svc === name) || null;

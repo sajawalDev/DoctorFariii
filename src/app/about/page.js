@@ -60,8 +60,8 @@ const experience = [
   {
     icon: "case",
     years: "2 years",
-    title: "House job, clinical practice",
-    body: "In-clinic training under supervision: acute presentations, case histories, and the discipline of proper record keeping.",
+    title: "House job, hands-on practice",
+    body: "Hands-on training under supervision: acute presentations, case histories, and the discipline of proper record keeping.",
   },
 ];
 
@@ -120,7 +120,7 @@ export default function AboutPage() {
             </p>
             <p className="lede">
               The Diploma in Homoeopathic Medical Sciences at Pakistan Homoeopathic Medical College
-              followed, and with it a two-year house job in clinic where she saw how much of a case
+              followed, and with it a two-year house job where she saw how much of a case
               never makes it into the first sentence a patient says.
             </p>
             <p className="lede">
@@ -184,7 +184,7 @@ export default function AboutPage() {
       <section className="sec">
         <div className="wrap">
           <div className="shead rv">
-            <div className="eyebrow brass">Clinical experience</div>
+            <div className="eyebrow brass">Hands-on experience</div>
             <h2 className="d2">Where she has practised.</h2>
           </div>
           <div className="grid cards3">

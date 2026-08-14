@@ -49,7 +49,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h5>Clinic</h5>
+            <h5>Contact</h5>
             <div className="fnav">
               <a href={`tel:${clinic.phoneHref}`}>{clinic.phoneDisplay}</a>
               <a href={`mailto:${clinic.email}`}>{clinic.email}</a>

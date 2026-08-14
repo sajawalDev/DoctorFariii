@@ -7,7 +7,7 @@ const conditions = [
   {
     icon: "face",
     title: "Skin & hair",
-    body: "Her main clinical focus. Long-running skin complaints are taken as a whole picture, not treated surface-first.",
+    body: "Her main area of focus. Long-running skin complaints are taken as a whole picture, not treated surface-first.",
     tags: ["Acne", "Eczema", "Pigmentation", "Hair fall"],
   },
   {
@@ -258,7 +258,7 @@ export default function HomePage() {
           <div className="sp-media rv-l">
             <div className="mframe">
               <div className="ph">
-                <b>Dr. Fariha at her clinic</b>
+                <b>Dr. Fariha Ashraf</b>
                 <span>Photograph — 4:5 portrait</span>
               </div>
               <div className="vial" />
@@ -274,7 +274,7 @@ export default function HomePage() {
             <p className="lede" style={{ marginTop: "22px" }}>
               Dr. Fariha Ashraf holds a Diploma in Homoeopathic Medical Sciences from Pakistan
               Homoeopathic Medical College, Lahore, with a science background in zoology, botany and
-              chemistry behind it. Her practice has moved from a two-year house job in clinic to a
+              chemistry behind it. Her practice has moved from a two-year supervised house job to a
               mostly online consultation room serving patients across Pakistan.
             </p>
             <ul className="ticks">

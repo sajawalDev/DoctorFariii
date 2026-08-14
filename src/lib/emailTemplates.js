@@ -4,6 +4,7 @@
 //   - confirmUser():  a thank-you receipt to the visitor who wrote in.
 // Both share one shell — centered logo header, clean body, copyright footer.
 
+import { readFileSync } from "node:fs";
 import { SITE_URL, clinic } from "@/lib/site";
 
 const TEAL = "#07828C";
@@ -12,6 +13,33 @@ const MUTED = "#5c6b6d";
 const LINE = "#e4ebeb";
 const BG = "#f4f7f7";
 const YEAR = 2026;
+
+// Content-ID used to reference the inline logo attachment from the HTML.
+const LOGO_CID = "brand-logo";
+
+// Read the logo file once and keep it in module memory. Referencing it with
+// `new URL(..., import.meta.url)` lets Next trace and bundle the asset into the
+// serverless function, so `readFileSync` finds it at runtime on Vercel too.
+let _logoBuffer;
+function logoBuffer() {
+  if (_logoBuffer === undefined) {
+    try {
+      _logoBuffer = readFileSync(new URL("../../public/logo.png", import.meta.url));
+    } catch {
+      _logoBuffer = null; // fall back to the hosted URL if it can't be read
+    }
+  }
+  return _logoBuffer;
+}
+
+// The attachment routes hand to nodemailer so the inline logo resolves.
+// Returns null when the file is unreadable — the shell then uses the hosted URL.
+export function logoAttachment() {
+  const buf = logoBuffer();
+  return buf
+    ? { filename: "logo.png", content: buf, cid: LOGO_CID, contentType: "image/png" }
+    : null;
+}
 
 // Escape user-supplied text before it ever touches an HTML string.
 export function escapeHtml(value) {
@@ -30,7 +58,10 @@ function nl2br(value) {
 
 // Wraps body content in the shared, email-client-safe table shell.
 function shell({ preheader, body }) {
-  const logo = `${SITE_URL}/logo.png`;
+  // Prefer the inline (CID) logo — remote <img> is blocked by default in many
+  // email clients, which is why the logo wasn't rendering. Fall back to the
+  // hosted URL only if the file couldn't be read at runtime.
+  const logo = logoBuffer() ? `cid:${LOGO_CID}` : `${SITE_URL}/logo.png`;
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -307,7 +338,7 @@ Add it to your calendar so you don&rsquo;t miss it:
 </p>
 ${calButton(b.gcalUrl, "Add to my calendar")}
 <p style="margin:24px 0 4px;color:${INK};font-size:15px;line-height:1.65;">
-If you need to reschedule, please message the clinic at least four hours ahead:
+If you need to reschedule, please message the practice at least four hours ahead:
 </p>
 <p style="margin:0 0 22px;">
 <a href="tel:${escapeHtml(clinic.phoneHref)}" style="color:${TEAL};font-weight:600;text-decoration:none;font-size:15px;">${escapeHtml(clinic.phoneDisplay)}</a>
@@ -336,7 +367,7 @@ Homeopathic Physician &middot; Online consultations
       `Add it to your calendar: ${b.gcalUrl}`,
       "(The appointment is also attached as consultation.ics.)",
       "",
-      `To reschedule, message the clinic at least four hours ahead: ${clinic.phoneDisplay}`,
+      `To reschedule, message the practice at least four hours ahead: ${clinic.phoneDisplay}`,
       "",
       "Warm regards,",
       "The practice of Dr. Fariha Ashraf",

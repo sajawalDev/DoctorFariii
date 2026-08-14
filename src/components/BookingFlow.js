@@ -2,6 +2,7 @@
 
 import { Fragment, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Icon from "./Icon";
 import { useClientToday } from "@/lib/useClientToday";
 import { SERVICES, MODES } from "@/lib/consultation";
@@ -167,6 +168,16 @@ export default function BookingFlow() {
     <section className="bwrap" ref={wrapRef}>
       <div className="wrap">
         <div style={{ textAlign: "center", marginBottom: "38px" }}>
+          <Link href="/" aria-label="Dr. Fariha Ashraf — home">
+            <Image
+              src="/logo.png"
+              alt="Dr. Fariha Ashraf — Homeopathic Physician"
+              width={806}
+              height={192}
+              priority
+              style={{ height: "54px", width: "auto", margin: "0 auto 22px", display: "block" }}
+            />
+          </Link>
           <div className="eyebrow" style={{ justifyContent: "center" }}>
             Book an appointment
           </div>
@@ -287,7 +298,7 @@ export default function BookingFlow() {
             <div className={paneClass(2)}>
               <div className="bh">
                 <h2 className="d3">Pick a date and time.</h2>
-                <p>Highlighted days have slots open. The clinic is closed on Sundays.</p>
+                <p>Highlighted days have slots open. The practice is closed on Sundays.</p>
               </div>
               <div className="calgrid">
                 <div>
@@ -555,7 +566,7 @@ export default function BookingFlow() {
                 <p className="muted" style={{ maxWidth: "480px", margin: "0 auto 32px", fontSize: ".94rem" }}>
                   A confirmation is on its way to{" "}
                   <strong>{patient.bemail || "your email"}</strong> with a calendar file you can add
-                  so your phone reminds you. If anything changes, message the clinic at least four
+                  so your phone reminds you. If anything changes, message the practice at least four
                   hours ahead.
                 </p>
                 <div className="cta-acts">

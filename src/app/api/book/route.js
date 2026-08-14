@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 import { clinic, SITE_URL } from "@/lib/site";
 import { findMode, findService } from "@/lib/consultation";
 import { CLOSED_DOW, isValidSlot, parseDateKey, slotToHour24, TIMEZONE_LABEL } from "@/lib/slots";
-import { bookingClinic, bookingPatient } from "@/lib/emailTemplates";
+import { bookingClinic, bookingPatient, logoAttachment } from "@/lib/emailTemplates";
 import { buildIcs, googleCalendarUrl, pktToUtc } from "@/lib/ics";
 
 // Sends real email + builds calendar files, so it must run on Node (nodemailer
@@ -60,7 +60,7 @@ function validate(raw) {
     const horizon = new Date(today);
     horizon.setDate(horizon.getDate() + BOOKING_HORIZON_DAYS);
     if (day < today) errors.date = "That date is in the past.";
-    else if (day.getDay() === CLOSED_DOW) errors.date = "The clinic is closed on Sundays.";
+    else if (day.getDay() === CLOSED_DOW) errors.date = "The practice is closed on Sundays.";
     else if (day > horizon) errors.date = "That date is too far ahead.";
   }
 
@@ -134,7 +134,7 @@ export async function POST(request) {
   const start = pktToUtc({ year: parts.year, month: parts.month, day: parts.day, hour: hour24 });
   const durationMinutes = service.minutes;
 
-  const location = mode.online ? "Online consultation — meeting link to follow" : clinic.area;
+  const location = "Online consultation — meeting link to follow";
   const summary = `Consultation: ${patient.name} — ${service.svc}`;
   const description = [
     `${service.svc} (${service.dur}) with Dr. Fariha Ashraf.`,
@@ -192,7 +192,11 @@ export async function POST(request) {
   });
 
   const from = `${clinic.name} <${user}>`;
+  // Inline logo first (so the branded header renders even when remote images are
+  // blocked), then the calendar invite.
+  const logo = logoAttachment();
   const attachments = [
+    ...(logo ? [logo] : []),
     {
       filename: "consultation.ics",
       content: ics,

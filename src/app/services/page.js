@@ -127,7 +127,7 @@ const faqs = [
   },
   {
     q: "What if I need to reschedule?",
-    a: "Message the clinic at least four hours before your appointment and it will be moved to the next available slot at no extra charge.",
+    a: "Message the practice at least four hours before your appointment and it will be moved to the next available slot at no extra charge.",
   },
 ];
 

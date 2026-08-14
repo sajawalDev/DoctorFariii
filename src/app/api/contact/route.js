@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { clinic } from "@/lib/site";
-import { notifyClinic, confirmUser } from "@/lib/emailTemplates";
+import { notifyClinic, confirmUser, logoAttachment } from "@/lib/emailTemplates";
 
 // This route sends real email, so it must run on the Node.js runtime
 // (nodemailer relies on Node's net/tls stack, not the edge runtime).
@@ -89,8 +89,12 @@ export async function POST(request) {
   const clinicMail = notifyClinic(data);
   const userMail = confirmUser(data);
 
+  // Inline logo so the branded header renders even when remote images are blocked.
+  const logo = logoAttachment();
+  const attachments = logo ? [logo] : undefined;
+
   try {
-    // 1) Notify the clinic inbox — replying to it answers the visitor directly.
+    // 1) Notify the practice inbox — replying to it answers the visitor directly.
     await transporter.sendMail({
       from,
       to: user,
@@ -98,6 +102,7 @@ export async function POST(request) {
       subject: clinicMail.subject,
       html: clinicMail.html,
       text: clinicMail.text,
+      attachments,
     });
 
     // 2) Send the visitor their confirmation receipt.
@@ -108,6 +113,7 @@ export async function POST(request) {
       subject: userMail.subject,
       html: userMail.html,
       text: userMail.text,
+      attachments,
     });
   } catch (err) {
     console.error("Contact form: failed to send email —", err);

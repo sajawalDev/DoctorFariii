@@ -86,7 +86,7 @@ export default function ContactForm() {
             Message sent
           </h3>
           <p className="muted" style={{ margin: 0 }}>
-            Thanks for reaching out — a confirmation is on its way to your inbox and the clinic
+            Thanks for reaching out — a confirmation is on its way to your inbox and the practice
             replies within one working day. For anything urgent, call or WhatsApp instead.
           </p>
         </div>
@@ -101,7 +101,7 @@ export default function ContactForm() {
     <div className="formcard">
       <div className="eyebrow">Send a message</div>
       <h2 className="d3" style={{ marginBottom: "10px" }}>
-        Write to the clinic.
+        Write to the practice.
       </h2>
       <p className="muted" style={{ fontSize: ".94rem", margin: "0 0 30px" }}>
         Please don&rsquo;t include detailed medical history here — that&rsquo;s what the consultation
@@ -147,7 +147,7 @@ export default function ContactForm() {
           <label>
             Message <i>*</i>
           </label>
-          <textarea value={values.message} onChange={update("message")} placeholder="How can the clinic help?" required />
+          <textarea value={values.message} onChange={update("message")} placeholder="How can the practice help?" required />
           <div className="emsg">Please write a short message</div>
         </div>
 
