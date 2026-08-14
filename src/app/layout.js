@@ -67,6 +67,9 @@ export const metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
+  verification: {
+    google: "eW3tTKYAspJt-evniHSBAvKOBQ-Nwg5sbupVTRcZXlk",
+  },
   category: "health",
 };
 
