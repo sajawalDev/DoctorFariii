@@ -17,7 +17,7 @@ export const clinic = {
   phoneHref: "+923144270788",
   email: "doctorfarihallc@gmail.com",
   languages: ["Urdu", "Punjabi", "English"],
-  builtBy: "BOSS Digital Solutions",
+  builtBy: "Sajawal's Lab",
 };
 
 export const hours = [

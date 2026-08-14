@@ -129,7 +129,7 @@ export default function HomePage() {
             </div>
             <div className="hero-meta rv" style={{ "--dl": ".85s" }}>
               <div>
-                <b data-count="5" data-suffix="+">0</b>
+                <b data-count="4" data-suffix="+">0</b>
                 <span>Years in practice</span>
               </div>
               <div>
