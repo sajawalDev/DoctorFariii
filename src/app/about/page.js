@@ -1,19 +1,27 @@
 import Link from "next/link";
 import Image from "next/image";
 import Icon from "@/components/Icon";
+import JsonLd from "@/components/JsonLd";
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "About the Doctor",
   description:
     "Dr. Fariha Ashraf, DHMS — a Lahore-trained homeopathic physician with a science background in zoology, botany and chemistry, and a practice built on long case histories.",
-  alternates: { canonical: "/about" },
-  openGraph: {
-    url: "/about",
-    title: "About Dr. Fariha Ashraf — Homeopathic Physician",
-    description:
-      "A Lahore-trained homeopathic physician practising where careful listening matters more than a quick prescription.",
-  },
-};
+  path: "/about",
+  keywords: [
+    "Dr. Fariha Ashraf",
+    "homeopathic physician Lahore",
+    "DHMS homeopath",
+    "female homeopathic doctor Lahore",
+    "homeopathy qualifications Pakistan",
+  ],
+});
+
+const breadcrumb = breadcrumbJsonLd([
+  { name: "Home", path: "/" },
+  { name: "About", path: "/about" },
+]);
 
 const stats = [
   { count: "5", suffix: "+", label: "Years in practice" },
@@ -76,6 +84,7 @@ const beyond = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <section className="phero">
         <div className="wrap phero-in">
           <div className="crumb rv">

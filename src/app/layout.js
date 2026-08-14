@@ -4,7 +4,9 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import HashScroll from "@/components/HashScroll";
-import { SITE_URL, clinic, hours } from "@/lib/site";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, clinic } from "@/lib/site";
+import { siteJsonLd } from "@/lib/seo";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -36,8 +38,13 @@ export const metadata = {
     "Dr. Fariha Ashraf",
     "DHMS Lahore",
     "homeopathic dermatology",
-    "skin treatment homeopathy",
+    "homeopathic skin treatment",
+    "homeopathy for acne and eczema",
+    "homeopathic doctor near me",
+    "online homeopathic doctor Pakistan",
     "diet and nutrition Lahore",
+    "homeopathic treatment for PCOS",
+    "best homeopathic doctor Lahore",
   ],
   alternates: { canonical: "/" },
   openGraph: {
@@ -68,50 +75,11 @@ export const viewport = {
   colorScheme: "light",
 };
 
-function jsonLd() {
-  return {
-    "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "@id": `${SITE_URL}/#clinic`,
-    name: clinic.name,
-    description:
-      "Homeopathic physician offering online consultations for skin, digestion, hormonal and long-standing complaints, with remedies prepared in-house.",
-    url: SITE_URL,
-    telephone: clinic.phoneHref,
-    email: clinic.email,
-    medicalSpecialty: ["Dermatology", "Dietetics", "Homeopathy"],
-    availableLanguage: clinic.languages,
-    priceRange: "PKR 1,000–3,500",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Lahore",
-      addressRegion: "Punjab",
-      addressCountry: "PK",
-    },
-    founder: {
-      "@type": "Person",
-      name: clinic.name,
-      jobTitle: "Homeopathic Physician",
-      alumniOf: "Pakistan Homoeopathic Medical College, Lahore",
-    },
-    openingHoursSpecification: hours
-      .filter((h) => !h.closed)
-      .map((h) => ({
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: h.day,
-        description: h.time,
-      })),
-  };
-}
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${fraunces.variable} ${jakarta.variable}`}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }}
-        />
+        <JsonLd data={siteJsonLd()} />
         <Nav />
         <main>{children}</main>
         <Footer />

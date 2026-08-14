@@ -1,24 +1,32 @@
 import Icon from "@/components/Icon";
 import ContactForm from "@/components/ContactForm";
 import ClinicHours from "@/components/ClinicHours";
+import JsonLd from "@/components/JsonLd";
 import { clinic } from "@/lib/site";
+import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Contact",
   description:
     "Contact Dr. Fariha Ashraf — phone, WhatsApp and email for questions about remedies, courier tracking or whether homeopathy suits your case. Online consultations across Pakistan.",
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    url: "/contact",
-    title: "Contact Dr. Fariha Ashraf — Online Homeopathy",
-    description:
-      "Phone, WhatsApp and email, plus consultation hours. Online consultations across Pakistan — no physical clinic.",
-  },
-};
+  path: "/contact",
+  keywords: [
+    "contact homeopathic doctor Lahore",
+    "Dr. Fariha Ashraf WhatsApp",
+    "online homeopathy Pakistan contact",
+    "homeopathy consultation hours",
+  ],
+});
+
+const breadcrumb = breadcrumbJsonLd([
+  { name: "Home", path: "/" },
+  { name: "Contact", path: "/contact" },
+]);
 
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={breadcrumb} />
       <section className="phero">
         <div className="wrap phero-in">
           <div className="crumb rv">

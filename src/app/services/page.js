@@ -1,19 +1,29 @@
 import Link from "next/link";
 import Icon from "@/components/Icon";
 import Faq from "@/components/Faq";
+import JsonLd from "@/components/JsonLd";
+import {
+  pageMetadata,
+  breadcrumbJsonLd,
+  faqJsonLd,
+  serviceCatalogJsonLd,
+} from "@/lib/seo";
 
-export const metadata = {
+export const metadata = pageMetadata({
   title: "Services & Fees",
   description:
     "Online homeopathic consultation, skin & hair care, obesity control with diet management, beauty care, chronic case management and women's & children's health — with remedies couriered across Pakistan.",
-  alternates: { canonical: "/services" },
-  openGraph: {
-    url: "/services",
-    title: "Homeopathic Services & Fees — Dr. Fariha Ashraf",
-    description:
-      "Six ways to work together, every one starting with a full case history. Clear pricing, remedies dispatched to your door.",
-  },
-};
+  path: "/services",
+  keywords: [
+    "homeopathic consultation online",
+    "homeopathy for skin and hair",
+    "homeopathic weight loss diet plan",
+    "homeopathy for PCOS",
+    "chronic case management homeopathy",
+    "homeopathic consultation fees Pakistan",
+    "women and children homeopathy Lahore",
+  ],
+});
 
 const services = [
   {
@@ -134,6 +144,14 @@ const faqs = [
 export default function ServicesPage() {
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Services", path: "/services" },
+        ])}
+      />
+      <JsonLd data={serviceCatalogJsonLd(services)} />
+      <JsonLd data={faqJsonLd(faqs)} />
       <section className="phero">
         <div className="wrap phero-in">
           <div className="crumb rv">
