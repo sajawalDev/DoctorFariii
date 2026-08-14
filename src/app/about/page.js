@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Icon from "@/components/Icon";
 
 export const metadata = {
@@ -101,11 +102,14 @@ export default function AboutPage() {
       <section className="sec">
         <div className="wrap split">
           <div className="sp-media rv-l">
-            <div className="mframe" style={{ aspectRatio: "3 / 4" }}>
-              <div className="ph">
-                <b>Portrait of Dr. Fariha</b>
-                <span>Photograph — 3:4</span>
-              </div>
+            <div className="mframe" style={{ aspectRatio: "3 / 2" }}>
+              <Image
+                src="/aboutpageherstory.jpg"
+                alt="Dr. Fariha Ashraf's homeopathic practice"
+                fill
+                sizes="(max-width: 900px) 100vw, 520px"
+                style={{ objectFit: "cover" }}
+              />
               <div className="vial" />
             </div>
           </div>

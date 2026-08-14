@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Icon from "@/components/Icon";
 import HeroGlobules from "@/components/HeroGlobules";
 import { clinic } from "@/lib/site";
@@ -144,13 +145,14 @@ export default function HomePage() {
 
           <div className="pcard rv-s" style={{ "--dl": ".35s" }} id="pcard">
             <div className="pframe">
-              <div className="pmono">
-                <div>
-                  <b>{clinic.monogram}</b>
-                  <i>{clinic.name}</i>
-                  <em>Portrait photograph goes here</em>
-                </div>
-              </div>
+              <Image
+                src="/homepagehero.jpg"
+                alt={`${clinic.name} — ${clinic.role}`}
+                fill
+                priority
+                sizes="(max-width: 1080px) 430px, 440px"
+                style={{ objectFit: "cover" }}
+              />
             </div>
             <div className="pbadge b1">
               <div className="ic">
@@ -257,10 +259,13 @@ export default function HomePage() {
         <div className="wrap split">
           <div className="sp-media rv-l">
             <div className="mframe">
-              <div className="ph">
-                <b>Dr. Fariha Ashraf</b>
-                <span>Photograph — 4:5 portrait</span>
-              </div>
+              <Image
+                src="/homepageaboutsection.jpg"
+                alt="Dr. Fariha Ashraf, homeopathic physician"
+                fill
+                sizes="(max-width: 900px) 100vw, 520px"
+                style={{ objectFit: "cover" }}
+              />
               <div className="vial" />
             </div>
           </div>
