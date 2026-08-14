@@ -667,7 +667,7 @@ footer .wrap{position:relative;z-index:1}
 /* ---------- responsive ---------- */
 @media(max-width:1080px){
   .hero-grid{grid-template-columns:1fr;gap:56px}
-  .pcard{max-width:430px;margin:0 auto}
+  .pcard{width:100%;max-width:430px;margin:0 auto}
   .cards4{grid-template-columns:repeat(2,1fr)}
   .fgrid{grid-template-columns:1fr 1fr;gap:40px}
   .bgrid{grid-template-columns:1fr}
@@ -708,8 +708,13 @@ footer .wrap{position:relative;z-index:1}
   .hero-meta{gap:18px 0}
   .hero-meta div{padding-right:18px;margin-right:18px}
   .hero-meta b{font-size:1.4rem}
-  .pbadge.b1{left:-8px;bottom:34px}
-  .pbadge.b2{right:-8px;top:44px}
+  /* badges: stop them floating over the portrait — sit them in one tidy row below it */
+  .pcard{display:grid;grid-template-columns:1fr 1fr;gap:13px;padding-bottom:0}
+  .pframe{grid-column:1 / -1}
+  .pbadge{position:static;inset:auto;border:1px solid var(--line-2);
+    box-shadow:var(--shadow-s);padding:14px 15px;border-radius:14px;min-width:0}
+  .pbadge b{font-size:.82rem}
+  .pbadge span{font-size:.7rem;line-height:1.35}
   .slots{grid-template-columns:1fr}
   .opt{flex-wrap:wrap;gap:14px}
   .acc-a p{padding-right:0}
