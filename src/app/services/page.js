@@ -177,9 +177,9 @@ export default function ServicesPage() {
                   <h3 className="d3">{s.title}</h3>
                   <p>{s.body}</p>
                 </div>
-                <div className="sr-go">
+                <Link href="/book" className="sr-go" aria-label={`Book a consultation — ${s.title}`}>
                   <Icon name="arrow" size={16} />
-                </div>
+                </Link>
               </div>
             ))}
           </div>
