@@ -4,24 +4,12 @@ import { Fragment, useRef, useState } from "react";
 import Link from "next/link";
 import Icon from "./Icon";
 import { useClientToday } from "@/lib/useClientToday";
+import { SERVICES, MODES } from "@/lib/consultation";
+import { ALL_SLOTS, dateKey } from "@/lib/slots";
+import { useBookings } from "./BookingProvider";
 
 const MON = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const DOW = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const SLOTS = {
-  morning: ["11:00 am", "11:40 am", "12:20 pm", "1:00 pm"],
-  evening: ["3:00 pm", "3:40 pm", "4:20 pm", "5:00 pm", "5:40 pm", "6:20 pm", "7:00 pm"],
-};
-
-const SERVICES = [
-  { svc: "First consultation", fee: "PKR 2,000", dur: "40 min", icon: "case", desc: "Full case taking, written plan and remedy. For new patients." },
-  { svc: "Follow-up review", fee: "PKR 1,000", dur: "20 min", icon: "refresh", desc: "For existing patients continuing an ongoing case." },
-  { svc: "Case + diet plan", fee: "PKR 3,500", dur: "60 min", icon: "cutlery", desc: "Consultation with a four-week written nutrition plan alongside." },
-];
-const MODES = [
-  { mode: "Video call", icon: "video", desc: "WhatsApp, Zoom or Google Meet — your choice." },
-  { mode: "Audio call", icon: "phone", desc: "Voice only, if your connection is slow." },
-  { mode: "In-clinic visit", icon: "pin", desc: "Shalimar Town, Lahore — by appointment." },
-];
 
 const STEPS = [
   { s: 1, t: "Service" },
@@ -41,10 +29,10 @@ const patientRules = {
 
 const sameDay = (a, b) => a && b && a.getTime() === b.getTime();
 const fmtDate = (d) => `${DOW[d.getDay()]}, ${d.getDate()} ${MON[d.getMonth()]} ${d.getFullYear()}`;
-const taken = (dt, slot) => (dt.getDate() * 37 + dt.getMonth() * 11 + slot.length * 7 + slot.charCodeAt(0)) % 5 === 0;
 
 export default function BookingFlow() {
   const wrapRef = useRef(null);
+  const { isTaken, openCount, commit } = useBookings();
   const [step, setStep] = useState(1);
   const [service, setService] = useState(null); // one of SERVICES
   const [mode, setMode] = useState(null);
@@ -54,6 +42,8 @@ export default function BookingFlow() {
   const [perr, setPerr] = useState({});
   const [consent, setConsent] = useState(false);
   const [ref, setRef] = useState("");
+  const [booking, setBooking] = useState("idle"); // idle | sending | error
+  const [bookErr, setBookErr] = useState("");
 
   const today = useClientToday(); // start-of-day on client, null during SSR
   const [monthOffset, setMonthOffset] = useState(0);
@@ -64,7 +54,8 @@ export default function BookingFlow() {
     if (d.getDay() === 0) return false; // Sunday closed
     const limit = new Date(today);
     limit.setDate(limit.getDate() + 60);
-    return d <= limit;
+    if (d > limit) return false;
+    return openCount(dateKey(d)) > 0; // hide days whose every slot is taken
   };
 
   const goStep = (n) => {
@@ -88,12 +79,38 @@ export default function BookingFlow() {
     if (Object.keys(next).length === 0) goStep(4);
   };
 
-  const confirm = () => {
-    const yy = String(date.getFullYear()).slice(2);
-    const mm = String(date.getMonth() + 1).padStart(2, "0");
-    const dd = String(date.getDate()).padStart(2, "0");
-    setRef(`FA-${yy}${mm}${dd}-${Math.floor(1000 + Math.random() * 9000)}`);
-    goStep(5);
+  // Confirm sends the booking to the server, which validates it, builds the
+  // .ics calendar file and emails both the clinic and the patient. Only once the
+  // server confirms do we mark the slot taken (in context + localStorage) so it
+  // disappears from availability, and show the success screen with the real
+  // reference the server generated.
+  const confirm = async () => {
+    if (booking === "sending") return;
+    setBooking("sending");
+    setBookErr("");
+    const dKey = dateKey(date);
+
+    try {
+      const res = await fetch("/api/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ service: service.svc, mode: mode.mode, dateKey: dKey, time, patient }),
+      });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
+        setRef(data.ref);
+        commit(dKey, time);
+        setBooking("idle");
+        goStep(5);
+        return;
+      }
+      setBookErr(data.error || "Something went wrong. Please try again.");
+      setBooking("error");
+    } catch {
+      setBookErr("Couldn't reach the server. Please check your connection and try again.");
+      setBooking("error");
+    }
   };
 
   const rebook = () => {
@@ -105,6 +122,8 @@ export default function BookingFlow() {
     setPerr({});
     setConsent(false);
     setRef("");
+    setBooking("idle");
+    setBookErr("");
     setMonthOffset(0);
     goStep(1);
   };
@@ -136,13 +155,11 @@ export default function BookingFlow() {
   }
   const prevDisabled = monthOffset <= 0;
 
-  // ---- slot groups for chosen date ----
-  let slotGroups = [];
-  if (date) {
-    const sat = date.getDay() === 6;
-    slotGroups = [["Morning", SLOTS.morning]];
-    slotGroups.push(sat ? ["Afternoon", SLOTS.evening.slice(0, 3)] : ["Evening", SLOTS.evening]);
-  }
+  // ---- available slots for the chosen date ----
+  // Every day offers the same one-hour grid (11 am – 6 pm PKT); slots that are
+  // already booked for this date are filtered out entirely, so only genuinely
+  // free times are ever shown.
+  const openSlots = date ? ALL_SLOTS.filter((t) => !isTaken(dateKey(date), t)) : [];
 
   const paneClass = (n) => `bpane${step === n ? " on" : ""}`;
 
@@ -333,27 +350,26 @@ export default function BookingFlow() {
                     {date ? `Times for ${date.getDate()} ${MON[date.getMonth()]}` : "Available times"}
                   </p>
                   {date ? (
-                    slotGroups.map(([label, list]) => (
-                      <div className="slot-grp" key={label}>
-                        <div className="slot-lb">{label}</div>
+                    openSlots.length ? (
+                      <div className="slot-grp">
                         <div className="slots">
-                          {list.map((t) => {
-                            const busy = taken(date, t);
-                            return (
-                              <button
-                                type="button"
-                                key={t}
-                                className={`slot${time === t ? " sel" : ""}`}
-                                disabled={busy}
-                                onClick={() => setTime(t)}
-                              >
-                                {t}
-                              </button>
-                            );
-                          })}
+                          {openSlots.map((t) => (
+                            <button
+                              type="button"
+                              key={t}
+                              className={`slot${time === t ? " sel" : ""}`}
+                              onClick={() => setTime(t)}
+                            >
+                              {t}
+                            </button>
+                          ))}
                         </div>
                       </div>
-                    ))
+                    ) : (
+                      <div className="slots-empty">
+                        Every time on this day is already booked. Please choose another date.
+                      </div>
+                    )
                   ) : (
                     <div className="slots-empty">Select a date on the calendar to see open slots.</div>
                   )}
@@ -500,13 +516,23 @@ export default function BookingFlow() {
                   speaking to the doctor who prescribed it.
                 </span>
               </label>
+              {bookErr ? (
+                <p role="alert" style={{ color: "#c2503f", fontSize: ".9rem", fontWeight: 500, margin: "0 0 4px" }}>
+                  {bookErr}
+                </p>
+              ) : null}
               <div className="bnav">
-                <button className="btn btn-o" onClick={() => goStep(3)}>
+                <button className="btn btn-o" onClick={() => goStep(3)} disabled={booking === "sending"}>
                   <Icon name="arrowLeft" size={15} /> Back
                 </button>
-                <button className="btn btn-b" disabled={!consent} onClick={confirm}>
-                  Confirm booking
-                  <Icon name="check" size={15} className="ar" />
+                <button
+                  className="btn btn-b"
+                  disabled={!consent || booking === "sending"}
+                  aria-busy={booking === "sending"}
+                  onClick={confirm}
+                >
+                  {booking === "sending" ? "Reserving…" : "Confirm booking"}
+                  {booking !== "sending" && <Icon name="check" size={15} className="ar" />}
                 </button>
               </div>
             </div>
@@ -527,8 +553,10 @@ export default function BookingFlow() {
                 </p>
                 <div className="ref">{ref || "—"}</div>
                 <p className="muted" style={{ maxWidth: "480px", margin: "0 auto 32px", fontSize: ".94rem" }}>
-                  A confirmation with the meeting link is on its way to your WhatsApp and email. If
-                  anything changes, message the clinic at least four hours ahead.
+                  A confirmation is on its way to{" "}
+                  <strong>{patient.bemail || "your email"}</strong> with a calendar file you can add
+                  so your phone reminds you. If anything changes, message the clinic at least four
+                  hours ahead.
                 </p>
                 <div className="cta-acts">
                   <Link href="/" className="btn btn-p">

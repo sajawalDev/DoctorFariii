@@ -1,4 +1,5 @@
 import BookingFlow from "@/components/BookingFlow";
+import BookingProvider from "@/components/BookingProvider";
 
 export const metadata = {
   title: "Book a Consultation",
@@ -14,5 +15,9 @@ export const metadata = {
 };
 
 export default function BookPage() {
-  return <BookingFlow />;
+  return (
+    <BookingProvider>
+      <BookingFlow />
+    </BookingProvider>
+  );
 }
