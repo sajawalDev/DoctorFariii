@@ -59,30 +59,6 @@ const strip = [
   "Online Consultation",
 ];
 
-const testimonials = [
-  {
-    initials: "SA",
-    name: "Sana A.",
-    city: "Lahore",
-    quote:
-      "The first call ran nearly an hour. She asked about my sleep and my appetite before she asked about my skin, which no one had done before.",
-  },
-  {
-    initials: "HR",
-    name: "Hira R.",
-    city: "Multan",
-    quote:
-      "I live in Multan so the online setup mattered. The remedy arrived by courier in three days with written instructions.",
-  },
-  {
-    initials: "MK",
-    name: "Maryam K.",
-    city: "Lahore",
-    quote:
-      "The diet plan was built around what we actually cook at home. That's the reason I managed to stay on it.",
-  },
-];
-
 export default function HomePage() {
   return (
     <>
@@ -318,36 +294,6 @@ export default function HomePage() {
               complaint is only the beginning of the case.
             </p>
             <div className="qauth">Dr. Fariha Ashraf, DHMS</div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. TESTIMONIALS */}
-      <section className="sec">
-        <div className="wrap">
-          <div className="shead ctr rv">
-            <span className="ph-note">Placeholder — replace with real patient reviews</span>
-            <div className="eyebrow">Patient words</div>
-            <h2 className="d2">What patients say.</h2>
-          </div>
-          <div className="grid cards3">
-            {testimonials.map((t, i) => (
-              <div className="tcard rv" style={{ "--dl": `${(i % 3) * 0.1}s` }} key={t.name}>
-                <div className="stars">
-                  {Array.from({ length: 5 }).map((_, s) => (
-                    <Icon key={s} name="star" size={15} />
-                  ))}
-                </div>
-                <p>{t.quote}</p>
-                <div className="tperson">
-                  <div className="tav">{t.initials}</div>
-                  <div>
-                    <b>{t.name}</b>
-                    <span>{t.city}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
