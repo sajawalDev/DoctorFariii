@@ -124,22 +124,23 @@ export default function AboutPage() {
           </div>
           <div className="rv-r">
             <div className="eyebrow">Her story</div>
-            <h2 className="d2">Science first, then homeopathy.</h2>
+            <h2 className="d2">A doctor who listens first.</h2>
             <p className="lede" style={{ marginTop: "22px" }}>
-              Dr. Fariha Ashraf came to homeopathy through the sciences — matriculation and
-              intermediate in biology, chemistry and physics, then a bachelor&rsquo;s in zoology,
-              botany and chemistry at Punjab Group of Colleges, Lahore. Botany in particular turned
-              out to matter: most of the materia medica she works from every day begins as a plant.
+              Dr. Fariha Ashraf is a homeopathic physician in Lahore whose practice is built around
+              one habit: giving every patient the time to be heard in full. Her consultations tend to
+              run long because she treats the person in front of her, not just the complaint they came
+              in with.
             </p>
             <p className="lede">
-              The Diploma in Homoeopathic Medical Sciences at Pakistan Homoeopathic Medical College
-              followed, and with it a two-year house job where she saw how much of a case
-              never makes it into the first sentence a patient says.
+              Warm, patient and unhurried, she works mostly with women and families — many of whom
+              have spent years being rushed through five-minute appointments elsewhere. With her, the
+              first conversation is where the real work begins, and no detail about sleep, appetite or
+              daily life is considered too small to matter.
             </p>
             <p className="lede">
-              Today her practice is mostly online. Patients from Lahore, and increasingly from other
-              cities, book a slot, sit down for a proper conversation, and receive remedies she
-              prepares herself.
+              Whether she is seeing patients across Lahore or online in other cities, her approach
+              stays the same — careful listening, remedies she prepares herself, and follow-up that
+              treats healing as a process rather than a single prescription.
             </p>
           </div>
         </div>
