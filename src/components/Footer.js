@@ -69,7 +69,12 @@ export default function Footer() {
           <span>
             &copy; {year} {clinic.name}. All rights reserved.
           </span>
-          <span>Built by {clinic.builtBy}</span>
+          <span>
+            Built by{" "}
+            <a href={clinic.builtByUrl} target="_blank" rel="noopener noreferrer">
+              {clinic.builtBy}
+            </a>
+          </span>
         </div>
       </div>
     </footer>
