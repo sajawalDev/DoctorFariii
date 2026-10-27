@@ -21,8 +21,8 @@ export default function Footer() {
               </div>
             </div>
             <p>
-              A homeopathic practice in {clinic.city} built around long case histories, remedies
-              prepared in-house, and consultations you don&rsquo;t have to travel for.
+              An online homeopathic practice based in {clinic.city}, built around long case
+              histories, careful follow-up, and consultations you don&rsquo;t have to travel for.
             </p>
           </div>
 

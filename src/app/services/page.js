@@ -62,19 +62,13 @@ const services = [
     title: "Women's & children's health",
     body: "Cycle irregularity, cycle-linked pain and mood, and gentle paediatric dosing for colic, teething, appetite and repeated infections. Consultations available in Urdu or Punjabi.",
   },
-  {
-    slug: "remedies",
-    icon: "flask",
-    title: "In-house prepared remedies",
-    body: "Remedies are prepared and potentised in her own dispensary rather than ordered in, then couriered anywhere in Pakistan with dosage written on the label in Urdu and English.",
-  },
 ];
 
 const included = [
   ["40 minutes of case taking", " — the complaint, plus everything around it"],
   ["Review of your reports", " — share lab results or photographs beforehand"],
   ["A written plan", " sent on WhatsApp or email after the call"],
-  ["Remedy prepared and couriered", " to your address across Pakistan"],
+  ["Remedy couriered", " to your address across Pakistan"],
   ["Two follow-up reviews", " included, so the plan can be adjusted"],
   ["A message window", " for short questions between appointments"],
 ];
@@ -82,9 +76,9 @@ const included = [
 const prices = [
   {
     eyebrow: "Follow-up",
-    title: "Review visit",
+    title: "Review consultation",
     amount: "PKR 1,000",
-    unit: "/ visit",
+    unit: "/ review",
     note: "For existing patients continuing a case.",
     ticks: ["15–20 minute review", "Remedy or potency adjustment", "Updated written instructions"],
     cta: "Book a review",
@@ -93,13 +87,13 @@ const prices = [
   {
     feat: true,
     flag: "Most booked",
-    eyebrow: "First visit",
+    eyebrow: "First consultation",
     title: "Full consultation",
     amount: "PKR 2,000",
-    unit: "/ first visit",
+    unit: "/ consultation",
     note: "The complete first appointment and case file.",
-    ticks: ["40-minute case taking", "Written treatment plan", "Remedy prepared & dispatched", "Two follow-ups included"],
-    cta: "Book first visit",
+    ticks: ["40-minute case taking", "Written treatment plan", "Remedy dispatched to you", "Two follow-ups included"],
+    cta: "Book first consultation",
     btn: "btn-b",
   },
   {
@@ -108,7 +102,7 @@ const prices = [
     amount: "PKR 3,500",
     unit: "/ package",
     note: "Consultation with a full nutrition plan alongside.",
-    ticks: ["Everything in the first visit", "Four-week written eating plan", "Grocery and portion guidance", "Monthly plan revision"],
+    ticks: ["Everything in the first consultation", "Four-week written eating plan", "Grocery and portion guidance", "Monthly plan revision"],
     cta: "Book the package",
     btn: "btn-o",
   },
@@ -121,7 +115,7 @@ const faqs = [
   },
   {
     q: "How do I receive the remedy?",
-    a: "Remedies are prepared in-house after the consultation and couriered to the address you provide. Delivery within Lahore is usually next day; elsewhere in Pakistan it typically takes two to four days. Dosage instructions are written on the label in both Urdu and English.",
+    a: "After the consultation, your prescribed remedy is couriered to the address you provide. Delivery within Lahore is usually next day; elsewhere in Pakistan it typically takes two to four days. Dosage instructions are given in both Urdu and English.",
   },
   {
     q: "How long before I see a change?",
@@ -255,7 +249,7 @@ export default function ServicesPage() {
             <div className="eyebrow">Consultation fees</div>
             <h2 className="d2">Clear pricing, no surprises.</h2>
             <p className="lede">
-              Fees cover the consultation and the written plan. Remedy preparation and courier are
+              Fees cover the consultation and the written plan. The remedy and courier are
               billed separately at cost.
             </p>
           </div>

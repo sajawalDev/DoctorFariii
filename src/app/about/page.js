@@ -138,9 +138,10 @@ export default function AboutPage() {
               daily life is considered too small to matter.
             </p>
             <p className="lede">
-              Whether she is seeing patients across Lahore or online in other cities, her approach
-              stays the same — careful listening, remedies she prepares herself, and follow-up that
-              treats healing as a process rather than a single prescription.
+              Whether her patients live in Lahore or in other cities, every consultation happens
+              online and her approach stays the same — careful listening, a remedy chosen for the
+              whole person, and follow-up that treats healing as a process rather than a single
+              prescription.
             </p>
           </div>
         </div>

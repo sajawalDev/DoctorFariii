@@ -74,12 +74,12 @@ export function siteJsonLd() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["MedicalBusiness", "MedicalClinic"],
+        "@type": "MedicalBusiness",
         "@id": clinicId,
         name: clinic.name,
         alternateName: `${clinic.name}, ${clinic.qualification}`,
         description:
-          "Online homeopathic physician offering consultations for skin, digestion, hormonal and long-standing complaints, with remedies prepared in-house and couriered across Pakistan.",
+          "Online homeopathic physician offering consultations for skin, digestion, hormonal and long-standing complaints, with remedies couriered across Pakistan.",
         url: SITE_URL,
         logo: `${SITE_URL}/logo.png`,
         image: `${SITE_URL}/homepagehero.jpg`,
@@ -105,7 +105,7 @@ export function siteJsonLd() {
         familyName: "Ashraf",
         jobTitle: `${clinic.role} (${clinic.qualification})`,
         description:
-          "Lahore-trained homeopathic physician (DHMS) focused on dermatology and diet, running a mostly online practice serving patients across Pakistan.",
+          "Lahore-trained homeopathic physician (DHMS) focused on dermatology and diet, running a fully online practice serving patients across Pakistan.",
         url: `${SITE_URL}/about`,
         image: `${SITE_URL}/homepagehero.jpg`,
         telephone: `+${clinic.phoneHref.replace(/^\+/, "")}`,
@@ -169,7 +169,7 @@ export function faqJsonLd(faqs) {
 export function serviceCatalogJsonLd(services) {
   return {
     "@context": "https://schema.org",
-    "@type": "MedicalClinic",
+    "@type": "MedicalBusiness",
     "@id": clinicId,
     hasOfferCatalog: {
       "@type": "OfferCatalog",

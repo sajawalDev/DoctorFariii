@@ -46,7 +46,7 @@ const conditions = [
 const steps = [
   { n: "01", title: "Book a time", body: "Pick a date and slot that suits you. You'll get a confirmation with the meeting link." },
   { n: "02", title: "Full case taking", body: "A 40-minute conversation covering the complaint, your history, sleep, appetite and temperament." },
-  { n: "03", title: "Remedy & plan", body: "A written plan and a remedy selected for your case, prepared in-house and dispatched to your address." },
+  { n: "03", title: "Remedy & plan", body: "A written plan and a remedy selected for your case, dispatched to your address." },
   { n: "04", title: "Follow-up", body: "Two scheduled reviews so the plan is adjusted to how you actually respond." },
 ];
 
@@ -141,11 +141,11 @@ export default function HomePage() {
             </div>
             <div className="pbadge b2">
               <div className="ic brass">
-                <Icon name="flask" size={18} strokeWidth={2} />
+                <Icon name="video" size={18} strokeWidth={2} />
               </div>
               <div>
-                <b>Remedies prepared</b>
-                <span>In-house, dispatched to you</span>
+                <b>Online consultations</b>
+                <span>Video or audio, Pakistan-wide</span>
               </div>
             </div>
           </div>
@@ -256,7 +256,7 @@ export default function HomePage() {
               Dr. Fariha Ashraf holds a Diploma in Homoeopathic Medical Sciences from Pakistan
               Homoeopathic Medical College, Lahore, with a science background in zoology, botany and
               chemistry behind it. Her practice has moved from a two-year supervised house job to a
-              mostly online consultation room serving patients across Pakistan.
+              fully online consultation room serving patients across Pakistan.
             </p>
             <ul className="ticks">
               {[

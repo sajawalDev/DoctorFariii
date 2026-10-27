@@ -232,7 +232,7 @@ export default function BookingFlow() {
             <div className={paneClass(1)}>
               <div className="bh">
                 <h2 className="d3">Which consultation do you need?</h2>
-                <p>Not sure? Choose the first visit — she&rsquo;ll redirect you if something else fits better.</p>
+                <p>Not sure? Choose the first consultation — she&rsquo;ll redirect you if something else fits better.</p>
               </div>
               <div className="opts">
                 {SERVICES.map((s) => (

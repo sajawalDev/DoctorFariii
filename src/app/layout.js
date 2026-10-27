@@ -54,7 +54,7 @@ export const metadata = {
     url: "/",
     title: "Dr. Fariha Ashraf — Homeopathic Physician, Lahore",
     description:
-      "Online homeopathic consultations for skin, digestion, hormonal and long-standing complaints. Remedies prepared in-house and couriered across Pakistan.",
+      "Online homeopathic consultations for skin, digestion, hormonal and long-standing complaints. Remedies couriered across Pakistan.",
   },
   twitter: {
     card: "summary_large_image",
