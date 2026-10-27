@@ -16,8 +16,7 @@ const validators = {
 
 const topics = [
   "General question",
-  "About a remedy I've received",
-  "Courier or delivery",
+  "About my prescription",
   "Rescheduling an appointment",
   "Something else",
 ];

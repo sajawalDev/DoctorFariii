@@ -11,8 +11,7 @@ export const dynamic = "force-dynamic";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const TOPICS = [
   "General question",
-  "About a remedy I've received",
-  "Courier or delivery",
+  "About my prescription",
   "Rescheduling an appointment",
   "Something else",
 ];

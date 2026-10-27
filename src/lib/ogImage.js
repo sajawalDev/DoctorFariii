@@ -110,7 +110,7 @@ export function renderOgImage() {
             }}
           >
             Online consultations for skin, digestion, hormonal & long-standing
-            complaints — remedies couriered across Pakistan.
+            complaints — from anywhere in Pakistan.
           </div>
         </div>
 

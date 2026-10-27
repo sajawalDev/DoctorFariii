@@ -12,7 +12,7 @@ import {
 export const metadata = pageMetadata({
   title: "Services & Fees",
   description:
-    "Online homeopathic consultation, skin & hair care, obesity control with diet management, beauty care, chronic case management and women's & children's health — with remedies couriered across Pakistan.",
+    "Online homeopathic consultation, skin & hair care, obesity control with diet management, beauty care, chronic case management and women's & children's health — online, for patients across Pakistan.",
   path: "/services",
   keywords: [
     "homeopathic consultation online",
@@ -30,7 +30,7 @@ const services = [
     slug: "online-consultation",
     icon: "video",
     title: "Online homeopathic consultation",
-    body: "A 40-minute video or audio consultation covering your complaint, medical history, sleep, appetite, temperament and family history. You leave with a written plan; the remedy is dispatched to your address.",
+    body: "A 40-minute video or audio consultation covering your complaint, medical history, sleep, appetite, temperament and family history. You leave with a written plan and a prescribed remedy.",
   },
   {
     slug: "skin-hair",
@@ -68,7 +68,7 @@ const included = [
   ["40 minutes of case taking", " — the complaint, plus everything around it"],
   ["Review of your reports", " — share lab results or photographs beforehand"],
   ["A written plan", " sent on WhatsApp or email after the call"],
-  ["Remedy couriered", " to your address across Pakistan"],
+  ["A prescribed remedy", " with dosage instructions in Urdu and English"],
   ["Two follow-up reviews", " included, so the plan can be adjusted"],
   ["A message window", " for short questions between appointments"],
 ];
@@ -92,7 +92,7 @@ const prices = [
     amount: "PKR 2,000",
     unit: "/ consultation",
     note: "The complete first appointment and case file.",
-    ticks: ["40-minute case taking", "Written treatment plan", "Remedy dispatched to you", "Two follow-ups included"],
+    ticks: ["40-minute case taking", "Written treatment plan", "Prescribed remedy & dosage", "Two follow-ups included"],
     cta: "Book first consultation",
     btn: "btn-b",
   },
@@ -111,11 +111,11 @@ const prices = [
 const faqs = [
   {
     q: "How does an online consultation actually work?",
-    a: "You choose a date and time on the booking page and fill in a short case form. You'll receive a confirmation with a video link — WhatsApp, Zoom or Google Meet, whichever you prefer. At the appointment Dr. Fariha takes your full history, and afterwards you receive a written plan and, where a remedy is prescribed, a courier tracking number.",
+    a: "You choose a date and time on the booking page and fill in a short case form. You'll receive a confirmation with a video link — WhatsApp, Zoom or Google Meet, whichever you prefer. At the appointment Dr. Fariha takes your full history, and afterwards you receive a written plan and, where needed, a prescribed remedy with dosage instructions.",
   },
   {
-    q: "How do I receive the remedy?",
-    a: "After the consultation, your prescribed remedy is couriered to the address you provide. Delivery within Lahore is usually next day; elsewhere in Pakistan it typically takes two to four days. Dosage instructions are given in both Urdu and English.",
+    q: "Where do I get the remedy?",
+    a: "Dr. Fariha prescribes the remedy and includes it, with dosage instructions in both Urdu and English, in your written plan. You can then get it from any homeopathic pharmacy near you.",
   },
   {
     q: "How long before I see a change?",
@@ -249,8 +249,8 @@ export default function ServicesPage() {
             <div className="eyebrow">Consultation fees</div>
             <h2 className="d2">Clear pricing, no surprises.</h2>
             <p className="lede">
-              Fees cover the consultation and the written plan. The remedy and courier are
-              billed separately at cost.
+              Fees cover the consultation and the written plan. Prescribed remedies are bought
+              separately from any homeopathic pharmacy.
             </p>
           </div>
           <div className="grid cards3">

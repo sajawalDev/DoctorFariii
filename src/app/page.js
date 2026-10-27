@@ -46,7 +46,7 @@ const conditions = [
 const steps = [
   { n: "01", title: "Book a time", body: "Pick a date and slot that suits you. You'll get a confirmation with the meeting link." },
   { n: "02", title: "Full case taking", body: "A 40-minute conversation covering the complaint, your history, sleep, appetite and temperament." },
-  { n: "03", title: "Remedy & plan", body: "A written plan and a remedy selected for your case, dispatched to your address." },
+  { n: "03", title: "Remedy & plan", body: "A written plan and a remedy prescribed for your case, with clear dosage instructions." },
   { n: "04", title: "Follow-up", body: "Two scheduled reviews so the plan is adjusted to how you actually respond." },
 ];
 
@@ -91,8 +91,8 @@ export default function HomePage() {
             </h1>
             <p className="lede hero-lede rv" style={{ "--dl": ".65s" }}>
               Dr. Fariha Ashraf, DHMS — a homeopathic physician in Lahore treating skin, digestion,
-              hormonal and long-standing complaints. Consult from anywhere in Pakistan; remedies
-              reach your door.
+              hormonal and long-standing complaints. Consult from anywhere in Pakistan, in Urdu,
+              Punjabi or English.
             </p>
             <div className="hero-acts rv" style={{ "--dl": ".75s" }}>
               <Link href="/book" className="btn btn-p">

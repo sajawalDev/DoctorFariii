@@ -27,7 +27,7 @@ export const metadata = {
     template: "%s · Dr. Fariha Ashraf",
   },
   description:
-    "Dr. Fariha Ashraf, DHMS — homeopathic physician in Lahore. Online consultations for skin, digestion, hormonal health and long-standing complaints, with remedies couriered across Pakistan.",
+    "Dr. Fariha Ashraf, DHMS — homeopathic physician in Lahore. Online consultations for skin, digestion, hormonal health and long-standing complaints, for patients across Pakistan.",
   applicationName: clinic.name,
   authors: [{ name: clinic.name }],
   creator: clinic.name,
@@ -54,7 +54,7 @@ export const metadata = {
     url: "/",
     title: "Dr. Fariha Ashraf — Homeopathic Physician, Lahore",
     description:
-      "Online homeopathic consultations for skin, digestion, hormonal and long-standing complaints. Remedies couriered across Pakistan.",
+      "Online homeopathic consultations for skin, digestion, hormonal and long-standing complaints, from anywhere in Pakistan.",
   },
   twitter: {
     card: "summary_large_image",

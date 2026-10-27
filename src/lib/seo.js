@@ -79,7 +79,7 @@ export function siteJsonLd() {
         name: clinic.name,
         alternateName: `${clinic.name}, ${clinic.qualification}`,
         description:
-          "Online homeopathic physician offering consultations for skin, digestion, hormonal and long-standing complaints, with remedies couriered across Pakistan.",
+          "Online homeopathic physician offering consultations for skin, digestion, hormonal and long-standing complaints to patients across Pakistan.",
         url: SITE_URL,
         logo: `${SITE_URL}/logo.png`,
         image: `${SITE_URL}/homepagehero.jpg`,

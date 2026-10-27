@@ -58,7 +58,7 @@ const experience = [
     icon: "monitor",
     years: "2 years",
     title: "Online consultation & prescribing",
-    body: "Running a full remote practice — case taking by video, written plans, remedies dispatched, follow-ups scheduled.",
+    body: "Running a full remote practice — case taking by video, written plans, remedies prescribed, follow-ups scheduled.",
   },
   {
     icon: "face",

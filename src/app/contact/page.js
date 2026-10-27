@@ -8,7 +8,7 @@ import { pageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Contact",
   description:
-    "Contact Dr. Fariha Ashraf — phone, WhatsApp and email for questions about remedies, courier tracking or whether homeopathy suits your case. Online consultations across Pakistan.",
+    "Contact Dr. Fariha Ashraf — phone, WhatsApp and email for questions about your prescription or whether homeopathy suits your case. Online consultations across Pakistan.",
   path: "/contact",
   keywords: [
     "contact homeopathic doctor Lahore",
@@ -44,8 +44,8 @@ export default function ContactPage() {
           </h1>
           <p className="lede rv" style={{ "--dl": ".5s", marginTop: "24px", maxWidth: "600px" }}>
             The practice is fully online — there&rsquo;s no physical clinic to visit. Reach out for
-            anything that isn&rsquo;t an appointment: questions about a remedy, courier tracking, or
-            whether homeopathy suits your case.
+            anything that isn&rsquo;t an appointment: questions about your prescription, how to take
+            a remedy, or whether homeopathy suits your case.
           </p>
         </div>
       </section>
@@ -85,7 +85,7 @@ export default function ContactPage() {
                 <div>
                   <b>Online consultations</b>
                   <span>Pakistan-wide, from anywhere</span>
-                  <em>No physical clinic — remedies couriered to you</em>
+                  <em>No physical clinic — every consultation is online</em>
                 </div>
               </div>
             </div>
