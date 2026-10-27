@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Icon from "@/components/Icon";
 import Faq from "@/components/Faq";
 import JsonLd from "@/components/JsonLd";
@@ -204,12 +205,19 @@ export default function ServicesPage() {
           <div className="sp-media rv-r">
             <div
               className="mframe"
-              style={{ background: "linear-gradient(160deg,#0A5158,#063B41)", borderColor: "rgba(255,255,255,.12)" }}
+              style={{
+                aspectRatio: "4 / 3",
+                background: "linear-gradient(160deg,#0A5158,#063B41)",
+                borderColor: "rgba(255,255,255,.12)",
+              }}
             >
-              <div className="ph">
-                <b style={{ color: "rgba(255,255,255,.75)" }}>Consultation in progress</b>
-                <span style={{ color: "rgba(255,255,255,.4)" }}>Photograph — 4:5</span>
-              </div>
+              <Image
+                src="/servicesconsultation.jpg"
+                alt="An online homeopathic consultation in progress — case notes written during a video call"
+                fill
+                sizes="(max-width: 900px) 100vw, 520px"
+                style={{ objectFit: "cover" }}
+              />
               <div className="vial" />
             </div>
           </div>
